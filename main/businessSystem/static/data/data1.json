@@ -1,0 +1,68 @@
+{
+  "data": {
+    "list": [
+      {
+        "num":"000001",
+        "phone":"13J41Q96AAA",
+        "certificationTime":"2016/11/22 12：00",
+        "name":"王柏成",
+        "userId":"210403199111111",
+        "place":"北京-东城",
+        "frontalPhoto":"images/id1.jpg",
+        "backPhoto":"images/id1.jpg",
+        "handheldPhoto":"images/id1.jpg",
+        "certificationStatus":"待审核"
+      },
+      {
+        "num":"000002",
+        "phone":"15J41Q96AAA",
+        "certificationTime":"2017/11/22 12：00",
+        "name":"小明",
+        "userId":"210403199222222",
+        "place":"北京-东城",
+        "frontalPhoto":"images/id1.jpg",
+        "backPhoto":"images/id1.jpg",
+        "handheldPhoto":"images/id1.jpg",
+        "certificationStatus":"已通过"
+      },
+      {
+        "num":"000003",
+        "phone":"16J41Q96AAA",
+        "certificationTime":"2017/11/22 12：00",
+        "name":"小花",
+        "userId":"210403199333333",
+        "place":"北京-东城",
+        "frontalPhoto":"images/id1.jpg",
+        "backPhoto":"images/id1.jpg",
+        "handheldPhoto":"images/id1.jpg",
+        "certificationStatus":"待审核"
+      },
+      {
+        "num":"000004",
+        "phone":"16J41Q96AAA",
+        "certificationTime":"2017/11/22 12：00",
+        "name":"马铃薯",
+        "userId":"210403199444444",
+        "place":"北京-东城",
+        "frontalPhoto":"images/id1.jpg",
+        "backPhoto":"images/id1.jpg",
+        "handheldPhoto":"images/id1.jpg",
+        "certificationStatus":"已拒绝"
+      },
+      {
+        "num":"000005",
+        "phone":"16J41Q96AAA",
+        "certificationTime":"2017/11/22 12：00",
+        "name":"土豆",
+        "userId":"210403199666666",
+        "place":"北京-东城",
+        "frontalPhoto":"images/id1.jpg",
+        "backPhoto":"images/id1.jpg",
+        "handheldPhoto":"images/id1.jpg",
+        "certificationStatus":"已通过"
+      }
+    ],
+    "total": 5
+  },
+  "status": 200
+}

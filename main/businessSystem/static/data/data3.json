@@ -1,0 +1,88 @@
+{
+  "data": {
+    "list": [
+      {
+        "num":"000001",
+        "userNum":"000001",
+        "nickName":"马铃薯",
+        "withdrawType":"支付宝",
+        "amount":"10000",
+        "thirdPartyAccount":"15WEW941SD2qwe345DWF67",
+        "thirdPartyBindingName":"王柏程",
+        "wechatNickname":"土豆",
+        "bankType":"",
+        "applicationTime":"2017/11/06 12：00",
+        "auditor":"王二小",
+        "auditTime":"2017/11/06 12：00",
+        "auditStatus":"已拒绝",
+        "refuseReason":"过期"
+      },
+      {
+        "num":"000002",
+        "userNum":"000002",
+        "nickName":"番茄",
+        "withdrawType":"支付宝",
+        "amount":"10000",
+        "thirdPartyAccount":"15WEW941SD2qwe345DWF67",
+        "thirdPartyBindingName":"王柏程",
+        "wechatNickname":"土豆",
+        "bankType":"",
+        "applicationTime":"2017/11/06 12：00",
+        "auditor":"王二小",
+        "auditTime":"2017/11/06 12：00",
+        "auditStatus":"审核中",
+        "refuseReason":""
+      },
+      {
+        "num":"000003",
+        "userNum":"000003",
+        "nickName":"土豆",
+        "withdrawType":"支付宝",
+        "amount":"10000",
+        "thirdPartyAccount":"15WEW941SD2qwe345DWF67",
+        "thirdPartyBindingName":"王柏程",
+        "wechatNickname":"土豆",
+        "bankType":"",
+        "applicationTime":"2017/11/06 12：00",
+        "auditor":"王二小",
+        "auditTime":"2017/11/06 12：00",
+        "auditStatus":"审核中",
+        "refuseReason":""
+      },
+      {
+        "num":"000004",
+        "userNum":"000004",
+        "nickName":"小花",
+        "withdrawType":"微信",
+        "amount":"10000",
+        "thirdPartyAccount":"15WEW941SD2qwe345DWF67",
+        "thirdPartyBindingName":"王柏程",
+        "wechatNickname":"土豆",
+        "bankType":"",
+        "applicationTime":"2017/11/06 12：00",
+        "auditor":"王二小",
+        "auditTime":"2017/11/06 12：00",
+        "auditStatus":"审核中",
+        "refuseReason":""
+      },
+      {
+        "num":"000005",
+        "userNum":"000005",
+        "nickName":"阿程",
+        "withdrawType":"微信",
+        "amount":"10000",
+        "thirdPartyAccount":"15WEW941SD2qwe345DWF67",
+        "thirdPartyBindingName":"王柏程",
+        "wechatNickname":"阿程",
+        "bankType":"",
+        "applicationTime":"2017/11/06 12：00",
+        "auditor":"王二小",
+        "auditTime":"2017/11/06 12：00",
+        "auditStatus":"已通过",
+        "refuseReason":""
+      }
+    ],
+    "total": 5
+  },
+  "status": 200
+}

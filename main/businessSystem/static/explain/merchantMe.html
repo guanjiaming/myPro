@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>个人账户</title>
+    <!-- 引入样式库 -->
+    <link rel="stylesheet" href="../js/lib/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../js/lib/bootstrap-treeview/bootstrap-treeview.min.css">
+
+    <!-- 引入自己的样式 -->
+    <link rel="stylesheet" href="../css/main.css">
+
+    <style>
+        #cancelChangeFaAdd {
+            display: none;
+        }
+
+        #okChangeFaAdd {
+            display: none;
+        }
+    </style>
+
+</head>
+<body id="sendOrder">
+<!-- 顶部通栏 -->
+<div class="row topInfo">
+    <div class="header">
+        <div class="logo">
+            <img src="../images/wdlogo.png" class="logo">
+            <h2>微东到家运营后台</h2>
+        </div>
+    </div>
+
+</div>
+<div class="container wdContainer">
+    <!-- 左侧菜单 -->
+    <div class="menu" style="position: absolute; left: 0; top: 0;height: 100%;background: #505458;">
+        <div id="tree" style="border-radius: 0">
+        </div>
+    </div>
+
+    <!--  右侧内容区域  -->
+    <div class="main">
+
+        <!-- 当前位置 -->
+        <div class="currentLocation">
+            <p>商家管理 /个人账户</p>
+        </div>
+
+        <!-- 内容区域 -->
+        <div class="container">
+            <!-- 第一行 -->
+            <div class="row" style="margin-bottom: 20px">
+                <div class="col-md-4">
+                    <span class="meTitle">用户ID：</span>
+                    <span id="userId">000001</span>
+                </div>
+                <div class="col-md-4">
+                    <span class="meTitle">用户名：</span>
+                    <span id="userName">家乐福超市（通州店）</span>
+                </div>
+                <div class="col-md-4">
+                    <span class="meTitle">手机号：</span>
+                    <span id="tel">13J41Q96AAA</span>
+                </div>
+            </div>
+
+            <!-- 第2行 -->
+            <div class="row" style="margin-bottom: 20px">
+                <div class="col-md-4">
+                    <span class="meTitle">负责人：</span>
+                    <span id="person">胡萌萌</span>
+                </div>
+                <div class="col-md-4">
+                    <span class="meTitle">年龄：</span>
+                    <span id="age">18</span>
+                </div>
+                <div class="col-md-4">
+                    <span class="meTitle">性别：</span>
+                    <span id="sex">男</span>
+                </div>
+            </div>
+
+            <!-- 第3行 -->
+            <div class="row" style="margin-bottom: 20px">
+                <div class="col-md-4">
+                    <span class="meTitle">头像：</span>
+                    <img class="shopImg" src="../images/user.png" alt="头像">
+                </div>
+                <div class="col-md-4">
+                    <span class="meTitle">店铺照：</span>
+                    <img class="shopImg" src="../images/user.png" alt="店铺照">
+                </div>
+                <div class="col-md-4">
+                    <span class="meTitle">余额：</span>
+                    <span id="balance">100</span>
+                </div>
+            </div>
+            <!--发件地址-->
+            <div class="row">
+                <div class="col-lg-12">
+                    <form class="form-inline">
+                        <div class="form-group" style="width: 100%;">
+                            <label for="sendAdd">发件地址 &nbsp;</label>
+                            <input type="text" class="form-control" id="sendAdd" style="width: 80%;"
+                                   list="sendAddList"
+                            >
+                            <datalist id="sendAddList">
+                                <!--<option>北京市—通州区—宋庄镇—徐宋东五街—家乐福（宋庄店）</option>-->
+                                <!--<option>北京市—通州区—宋庄镇—徐宋东五街—家乐福1（宋庄店）</option>-->
+                                <!--<option>北京市—通州区—宋庄镇—徐宋东五街—家乐福2（宋庄店）</option>-->
+                            </datalist>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- 发件姓名与电话 -->
+            <div class="row">
+                <div class="col-lg-4">
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <label for="name">姓名 &nbsp;</label>
+                            <input type="text" class="form-control"
+                                   id="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="iphone">电话 &nbsp;</label>
+                            <input type="text" class="form-control"
+                                   id="iphone"
+                            >
+                        </div>
+                    </form>
+                </div>
+                <div class="col-lg-4">
+                    <!-- 新增 -->
+                    <button id="changeFaAdd" type="button" class="btn btn-primary">编辑发货信息</button>
+                    <button id="cancelChangeFaAdd" type="button" class="btn btn-danger">取消</button>
+                    <button id="okChangeFaAdd" type="button" class="btn btn-primary">确认</button>
+                </div>
+            </div>
+
+            <!-- 纪录 -->
+            <div class="row">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active">
+                        <a href="#weekLog" aria-controls="home" role="tab" data-toggle="tab">周记录</a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#monthLog" aria-controls="profile" role="tab" data-toggle="tab">月纪录</a>
+                    </li>
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <!-- 周记录表格 -->
+                    <div role="tabpanel" class="tab-pane active" id="weekLog">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th>日期</th>
+                                <th>12月3号</th>
+                                <th>12月4号</th>
+                                <th>12月5号</th>
+                                <th>12月6号</th>
+                                <th>12月7号</th>
+                                <th>12月8号</th>
+                                <th>12月9号</th>
+                                <th>总合</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>订单数（单）</td>
+                                <td>10</td>
+                                <td>10</td>
+                                <td>10</td>
+                                <td>10</td>
+                                <td>10</td>
+                                <td>10</td>
+                                <td>10</td>
+                                <td>100</td>
+                            <tr>
+                            <tr>
+                                <td>支付金额（元）</td>
+                                <td>50</td>
+                                <td>50</td>
+                                <td>50</td>
+                                <td>50</td>
+                                <td>50</td>
+                                <td>50</td>
+                                <td>50</td>
+                                <td>500</td>
+                            <tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- 月记录表格 -->
+                    <div role="tabpanel" class="tab-pane" id="monthLog">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th>日期</th>
+                                <th>1月</th>
+                                <th>2月</th>
+                                <th>3月</th>
+                                <th>4月</th>
+                                <th>5月</th>
+                                <th>6月</th>
+                                <th>7月</th>
+                                <th>8月</th>
+                                <th>9月</th>
+                                <th>10月</th>
+                                <th>11月</th>
+                                <th>12月</th>
+                                <th>总合</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>订单数（单）</td>
+                                <td>10</td>
+                                <td>10</td>
+                                <td>10</td>
+                                <td>10</td>
+                                <td>10</td>
+                                <td>10</td>
+                                <td>10</td>
+                                <td>10</td>
+                                <td>10</td>
+                                <td>10</td>
+                                <td>10</td>
+                                <td>10</td>
+                                <td>100</td>
+                            <tr>
+                            <tr>
+                                <td>支付金额（元）</td>
+                                <td>50</td>
+                                <td>50</td>
+                                <td>50</td>
+                                <td>50</td>
+                                <td>50</td>
+                                <td>50</td>
+                                <td>50</td>
+                                <td>50</td>
+                                <td>50</td>
+                                <td>50</td>
+                                <td>50</td>
+                                <td>50</td>
+                                <td>500</td>
+                            <tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- 引入公共组件库  -->
+<script src="../js/lib/jquery/jquery.js"></script>
+<script src="../js/lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="../js/lib/bootstrap-treeview/bootstrap-treeview.js"></script>
+<script src="../js/treeMenu.js"></script>
+
+<script>
+    $(function () {
+
+        // 禁止输入框输入
+        $("#sendAdd").attr("disabled", "true");
+        $("#name").attr("disabled", "true");
+        $("#iphone").attr("disabled", "true");
+
+
+        // 从后台获取地址
+        getMeFaAdd();
+
+
+        // 点击编辑按钮事件
+        $("#changeFaAdd").click(function () {
+            $("#sendAdd").removeAttr("disabled");
+            $("#name").removeAttr("disabled");
+            $("#iphone").removeAttr("disabled");
+
+            $("#cancelChangeFaAdd").show();
+            $("#okChangeFaAdd").show();
+            $("#changeFaAdd").hide();
+        });
+
+        // 取消编辑
+        $("#cancelChangeFaAdd").click(function () {
+            getMeFaAdd();
+            $("#sendAdd").attr("disabled", "true");
+            $("#name").attr("disabled", "true");
+            $("#iphone").attr("disabled", "true");
+
+            $("#cancelChangeFaAdd").hide();
+            $("#okChangeFaAdd").hide();
+            $("#changeFaAdd").show();
+        });
+
+        // 保存编辑
+        $("#okChangeFaAdd").click(function () {
+
+            var faadd = $("#sendAdd").val();
+            var faname = $("#name").val();
+            var fatel = $("#iphone").val();
+
+            console.log(faadd);
+            console.log(faname);
+            console.log(fatel);
+
+            // 向后台发送信息  =》 =》 =》 =》
+            $.ajax({
+                type: "GET",
+                url: "/send/",
+                data: {
+                    faadd: faadd,
+                    faname: faname,
+                    fatel: fatel
+                },
+                success: function (res) {
+
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            });
+
+
+            $("#sendAdd").attr("disabled", "true");
+            $("#name").attr("disabled", "true");
+            $("#iphone").attr("disabled", "true");
+
+            $("#cancelChangeFaAdd").hide();
+            $("#okChangeFaAdd").hide();
+            $("#changeFaAdd").show();
+
+        })
+
+    });
+
+    /**
+     * 获取发件地址信息
+     */
+    function getMeFaAdd() {
+        var url = '../data/getFaAdd.json';
+        $.ajax({
+            type: "GET",
+            url: url,
+            success: function (res) {
+
+                $('#sendAdd').val(res.data.add);
+                $('#name').val(res.data.name);
+                $('#iphone').val(res.data.tel);
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        })
+    }
+
+</script>
+</body>
+</html>

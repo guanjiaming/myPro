@@ -1,0 +1,249 @@
+.list-group-item {
+    border-radius: 0 !important;
+}
+
+#tree {
+    background: #505458;
+    color: #fff;
+}
+
+#tree ul li {
+    background: #505458;
+}
+
+.list-group-item {
+    border: none;
+}
+
+.container .logo {
+    width: 100%;
+    margin-top: 100px;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.container .logo img {
+    width: 100px;
+}
+
+.container .panel {
+    width: 400px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.container .panel .panel-heading {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.container .panel .panel-body {
+    padding: 30px 30px 10px 30px;
+}
+
+.container .panel .panel-body .form-group {
+    margin-bottom: 25px;
+}
+
+.container .panel .panel-body .form-group .btn {
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
+}
+
+body,
+html {
+    width: 100%;
+    height: 100%;
+}
+
+.topInfo {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    position: fixed;
+    z-index: 5;
+}
+
+.header {
+    display: block;
+    background: #505458;
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    padding: 0 20px;
+}
+
+.header .logo {
+    line-height: 60px;
+}
+
+.header .logo img {
+    width: 40px;
+    margin-top: 10px;
+    vertical-align: top;
+}
+
+.header .logo h2 {
+    color: #fff;
+    display: inline-block;
+    font-size: 18px;
+    font-weight: 600;
+    margin-left: 10px;
+}
+
+.container {
+    width: 100%;
+    padding: 0;
+    position: relative;
+}
+
+.container .menu {
+    width: 230px;
+    float: left;
+    position: fixed;
+    left: 0;
+    top: 60px;
+    height: 100%;
+    background: #505458;
+}
+
+.container .menu button.btn {
+    display: inline-block;
+    height: 60px;
+    border-radius: 0 !important;
+    font-size: 16px;
+}
+
+.container .main {
+    margin-left: 230px;
+    background: #f4f4f4;
+    padding: 10px 0 0 10px;
+}
+
+.container .main .container .row {
+    margin: 0;
+}
+
+.container .main .container .row .col-lg-12 {
+    width: 100%;
+}
+
+.container .main .container .form-inline .form-group {
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+.container .main .container .tableWrap {
+    overflow: auto;
+}
+
+.container .main .container .tableWrap .table {
+    min-width: 1400px;
+    text-align: center;
+}
+
+.container .main .container .tableWrap .table th {
+    text-align: center;
+}
+
+.container .main .container .tableWrap .table td {
+    padding: 4px;
+    line-height: 80px;
+}
+
+.container .main .container .tableWrap .table td img {
+    width: 100px;
+    height: 70px;
+}
+
+.container .main .container .tableWrap .table td .btn {
+    margin: 0 4px;
+}
+
+.container .main .container .pagination {
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+
+.container .modal .modal-content {
+    top: 100px;
+}
+
+.container .modal .modal-body img {
+    width: 860px;
+}
+
+#orderComplaints .main .tableWrap {
+    overflow: auto;
+}
+
+#orderComplaints .main .tableWrap .table {
+    min-width: 4000px;
+}
+
+#orderComplaints .main .tableWrap .table td {
+    line-height: 44px;
+}
+
+#cashManagement .main .tableWrap {
+    overflow: auto;
+}
+
+#cashManagement .main .tableWrap .table {
+    width: 2000px;
+}
+
+#cashManagement .main .tableWrap .table td {
+    line-height: 44px;
+}
+
+.xinyuStar {
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    color: #c9c9c9;
+}
+
+.xinyuStar .glyphicon-star {
+    margin-left: 10px;
+}
+
+.xinyuStar .starLight {
+    color: #ff9f19;
+}
+
+.distanceWrap,
+.priceWrap {
+    font-size: 16px;
+    line-height: 36px;
+}
+
+.distanceWrap span,
+.priceWrap span {
+    margin-left: 10px;
+}
+
+.sendBtn {
+    margin-bottom: 50px;
+}
+
+.shopImg {
+    width: 70px;
+}
+
+.meTitle {
+    font-weight: 600;
+}
+
+.wdContainer {
+    position: relative;
+    height: 93.6%;
+    background: #f4f4f4;
+    top: 60px;
+}
+
+#goBandBtn{
+    display: none;
+}

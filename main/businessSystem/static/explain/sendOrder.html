@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>发单</title>
+    <!-- 引入样式库 -->
+    <link rel="stylesheet" href="../js/lib/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../js/lib/bootstrap-treeview/bootstrap-treeview.min.css">
+
+    <!-- 引入自己的样式 -->
+    <link rel="stylesheet" href="../css/main.css">
+
+    <!-- 百度地图样式 -->
+    <style>
+        #allmap {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            margin: 0;
+            font-family: "微软雅黑";
+            border: 2px solid #c3c3c3;
+        }
+    </style>
+
+</head>
+<body id="sendOrder">
+<!-- 顶部通栏 -->
+<div class="row topInfo">
+    <div class="header">
+        <div class="logo">
+            <img src="../images/wdlogo.png" class="logo">
+            <h2>微东到家运营后台</h2>
+        </div>
+    </div>
+</div>
+
+<div class="container wdContainer">
+    <!-- 左侧菜单 -->
+    <div class="menu">
+        <div id="tree" style="border-radius: 0">
+        </div>
+    </div>
+
+    <!--  右侧内容区域  -->
+    <div class="main">
+
+        <!-- 当前位置 -->
+        <div class="currentLocation">
+            <p>商家管理 / 发单</p>
+        </div>
+
+        <!-- 内容区域 -->
+        <div class="container">
+            <div class="row">
+                <h4>发货信息</h4>
+                <!-- 发件地址 -->
+                <div class="col-lg-8">
+                    <!--<p>-->
+                    <!--<label>发件地址 &nbsp;</label>-->
+                    <!--<select id="sendAdd" class="form-control" style="margin-bottom: 20px;width:100%">-->
+                    <!--<option>选择发件地址</option>-->
+                    <!--&lt;!&ndash;<option>北京市—通州区</option>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<option>北京市—通州区—宋庄镇</option>&ndash;&gt;-->
+                    <!--</select>-->
+                    <!--</p>-->
+                    <form class="form-inline">
+                        <div class="form-group" style="width: 100%;">
+                            <label for="name">发件地址 &nbsp;</label>
+                            <input id="sendAdd" type="text" class="form-control"
+                                   disabled
+                                   style="width: 80%;">
+                        </div>
+                    </form>
+
+
+                </div>
+
+                <div class="col-lg-4">
+                    <p>
+                        <button id="goBandBtn" type="button" class="btn btn-danger"
+                                style="position: relative;top: 25px;">去绑定
+                        </button>
+                    </p>
+                </div>
+
+                <!-- 发件姓名与电话 -->
+                <div class="col-lg-12">
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <label for="name">姓名 &nbsp;</label>
+                            <input type="text" class="form-control" id="name" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="iphone">电话 &nbsp;</label>
+                            <input type="text" class="form-control" id="iphone" disabled>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- 分割线 -->
+            <div class="row">
+                <hr/>
+            </div>
+            <div class="row">
+                <h4>收货信息</h4>
+            </div>
+
+            <!-- 表单信息和地图 -->
+            <div class="row">
+                <!--  地图左侧这一栏  -->
+                <div class="col-lg-6">
+                    <!-- 选择收件地址 -->
+                    <div class="row">
+                        <div class="col-md-3" style="padding: 0">
+                            <div class="form-inline">
+                                <div class="form-group">
+                                    <select id="province" class="form-control" onchange="changeSelect(this);">
+                                        <option>请选择省/市</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 二级城市联动 -->
+                        <div class="col-md-3" style="padding: 0">
+                            <div class="form-inline">
+                                <div class="form-group">
+                                    <select id="city" class="form-control">
+                                        <option>请选择市/区</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12" style="padding: 0">
+                            <form class="form-inline">
+                                <div class="form-group" style="width: 100%;">
+                                    <label for="consigneeAddress">收件地址 &nbsp;</label>
+                                    <input type="text" class="form-control" style="width: 70%;"
+                                           list="consigneeAddressList"
+                                           id="consigneeAddress"
+                                           placeholder="输入收件人地址">
+                                    <datalist id="consigneeAddressList" style="z-index: 50">
+                                        <!--<option>北京市</option>-->
+                                        <!--<option>北京市—通州区</option>-->
+                                        <!--<option>北京市—通州区—宋庄镇</option>-->
+                                    </datalist>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+
+                    <!-- 详细收件地址 -->
+                    <div class="row">
+                        <form class="form-inline">
+                            <div class="form-group" style="width: 100%;">
+                                <label for="name">详细地址 &nbsp;</label>
+                                <input id="addDetail" type="text" class="form-control" style="width: 80%;">
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- 物品类型 -->
+                    <div class="row">
+                        <!--物品类型-->
+                        <div class="col-lg-6" style="padding: 0;">
+                            <form class="form-inline">
+                                <div class="form-group" style="width: 100%;">
+                                    <label for="goodsType">物品类型 &nbsp;</label>
+                                    <input type="text" class="form-control" style="width: 80%;"
+                                           list="goodsTypeList"
+                                           id="goodsType"
+                                           placeholder="输入物品类型">
+                                    <datalist id="goodsTypeList">
+                                        <option>文件</option>
+                                        <option>服饰</option>
+                                        <option>食品</option>
+                                        <option>书籍</option>
+                                        <option>数码产品</option>
+                                        <option>生活用品</option>
+                                        <option>工艺品</option>
+                                        <option>其他</option>
+                                    </datalist>
+                                </div>
+                            </form>
+                        </div>
+                        <!--  信誉  -->
+                        <div class="col-lg-6" style="height:54px;padding-top: 5px">
+                            <span class="label label-success">信誉要求</span>
+                            <div id="xinyuStar" class="xinyuStar">
+                                <span class=" glyphicon glyphicon-star" aria-hidden="true" star="1"
+                                      style="color: #ff9f19;"></span>
+                                <span class=" glyphicon glyphicon-star" aria-hidden="true" star="2"></span>
+                                <span class=" glyphicon glyphicon-star" aria-hidden="true" star="3"></span>
+                                <span class=" glyphicon glyphicon-star" aria-hidden="true" star="4"></span>
+                                <span class=" glyphicon glyphicon-star" aria-hidden="true" star="5"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 收件人姓名/电话 -->
+                    <div class="row">
+                        <form class="form-inline">
+                            <div class="form-group">
+                                <label for="shouName">收件人姓名 &nbsp;</label>
+                                <input type="text" class="form-control" id="shouName" placeholder="请输入收件人姓名">
+                            </div>
+                            <div class="form-group">
+                                <label for="shouIphone">收件人电话 &nbsp;</label>
+                                <input type="text" class="form-control" id="shouIphone" placeholder="请输入手机号">
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- 重量 -->
+                    <div class="row">
+                        <div class="col-lg-6" style="padding: 0">
+                            <form class="form-inline">
+                                <div class="form-group">
+                                    <label class="sr-only" for="goodsWeight">重量</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">重量</div>
+                                        <input id="goodsWeight" type="text" class="form-control" style="z-index: 0">
+                                        <div class="input-group-addon">kg</div>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                        <div class="col-lg-6 distanceWrap">
+                            <span>距离: </span>
+                            <span id="distanceNum" class="distance">0.00 </span>
+                            <span>km </span>
+                        </div>
+                    </div>
+
+                    <!-- 价格 -->
+                    <div class="row">
+                        <div class="col-lg-6" style="padding: 0">
+                            <form class="form-inline">
+                                <div class="form-group">
+                                    <label class="sr-only" for="goodsPrice">价格</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">价格</div>
+                                        <input id="goodsPrice" type="text" class="form-control" style="z-index: 0">
+                                        <div class="input-group-addon">元</div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-lg-6 priceWrap">
+                            <span>余额: </span>
+                            <span id="PriceNum" class="price">0.00 </span>
+                            <span>元</span>
+                        </div>
+                    </div>
+
+                    <!-- 备注 -->
+                    <div class="row">
+                        <span>备注</span>
+                        <br>
+                        <br>
+                        <textarea id="postscript" class="form-control" rows="3" style="resize:none;"></textarea>
+                    </div>
+                </div>
+
+
+                <!-- 地图部分 -->
+                <div class="col-lg-6" style="width: 50%;height: 438px">
+                    <!-- 地图容器 -->
+                    <div id="allmap">
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- 发单按钮 -->
+            <div class="row sendBtn" style="text-align: center; margin-top: 20px;">
+                <button id="sendBtn" type="button" class="btn btn-primary btn-lg" style="width:20%">发单</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- 引入公共组件库  -->
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=4wHydjrY8hbxTfwbLEoNmAklrnRVUcaG"></script>
+<script src="../js/lib/jquery/jquery.js"></script>
+<script src="../js/lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="../js/lib/bootstrap-treeview/bootstrap-treeview.min.js"></script>
+<script src="../js/selectAddress.js"></script>
+<script src="../js/treeMenu.js"></script>
+
+<!-- 获取ip -->
+<script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+<script type="text/javascript">
+    //    console.log(returnCitySN["cip"] + ',' + returnCitySN["cname"]);
+    var wdIp = returnCitySN["cip"];
+    var wdAk = "4wHydjrY8hbxTfwbLEoNmAklrnRVUcaG";
+
+
+    // 发件地址 的值
+    var faAdd;
+
+    // 定义发件地址的经纬度
+    var faPoint;
+    var pointX, pointY;
+
+
+    // 定义收件地址的经纬度
+    var sPoint;
+    var sPointX, sPointY;
+
+
+    // 定义发件人的姓名 电话
+    var fName, fTel;
+
+    // 定义收件人的姓名 电话
+    var sName, sTel;
+
+    // 收件地址的值
+    var selectCity;
+    var sAdd;
+    var saddDetail;
+
+    var goodsType;      // 物品类型
+    var wdWeight;       // 物品重量
+    var wdPrice;        // 物品价格
+    var postscript;     // 附言-备注
+    var wdDistance;     // 距离
+    var xinyu = 1;      // 信誉度 默认为1
+</script>
+<script>
+
+    $(function () {
+
+        // 获取当前位置的经纬度
+//        getPoint(wdIp, wdAk);
+
+        // 百度地图API功能
+        var map = new BMap.Map("allmap");    // 创建Map实例
+        map.centerAndZoom(new BMap.Point(116.404, 39.915), 11);  // 初始化地图,设置中心点坐标和地图级别
+        map.setCurrentCity("北京");          // 设置地图显示的城市 此项是必须设置的
+        map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+
+        var ac2 = new BMap.Autocomplete(    //建立一个自动完成的对象
+            {
+                "input": "consigneeAddress"
+                , "location": map
+            });
+
+        ac2.addEventListener("onhighlight", function (e) {  //鼠标放在下拉列表上的事件
+            var str = "";
+            var _value = e.fromitem.value;
+            var value = "";
+            if (e.fromitem.index > -1) {
+                value = _value.province + _value.city + _value.district + _value.street + _value.business;
+            }
+            str = "FromItem<br />index = " + e.fromitem.index + "<br />value = " + value;
+
+            value = "";
+            if (e.toitem.index > -1) {
+                _value = e.toitem.value;
+                value = _value.province + _value.city + _value.district + _value.street + _value.business;
+            }
+            str += "<br />ToItem<br />index = " + e.toitem.index + "<br />value = " + value;
+            G("consigneeAddressList").innerHTML = str;
+
+        });
+
+
+        // 创建搜索实例
+        var localSearch = new BMap.LocalSearch(map);
+
+        // 获取发件地址
+        getFaAdd(function () {
+            setTimeout(function () {
+                //console.log($(self).val());
+                // 选择框 获取到的值 赋值到 搜索框
+                faAdd = $("#sendAdd").val();
+
+                // 地图检索
+                map.clearOverlays();
+                localSearch.setSearchCompleteCallback(function (searchResult) {
+                    var poi = searchResult.getPoi(0);
+                    //获取经度和纬度，赋值
+                    faPoint = poi.point;
+                    pointX = poi.point.lng;
+                    pointY = poi.point.lat;
+                    map.centerAndZoom(poi.point, 11);  // 地图展示到对应的经纬度区域
+                    var marker = new BMap.Marker(new BMap.Point(poi.point.lng, poi.point.lat));  // 创建标注，为要查询的地址对应的经纬度
+                    map.addOverlay(marker);
+
+                });
+                localSearch.search(faAdd);  // 进行搜索
+            }, 1000);
+        });
+
+
+        // 选择城市
+        // province
+        $("#city").change(function () {
+            var self = this;
+            clearTimeout(self.wdT);
+
+            self.wdT = setTimeout(function () {
+                //console.log($(self).val());
+                // 选择框 获取到的值 赋值到 搜索框
+                var mCity;
+                mCity = $(self).find("option:selected").text();
+                if (mCity == "市辖区" || mCity == "县") {
+                    mCity = '';
+                }
+                selectCity = $("#province").find("option:selected").text() + mCity;
+                // console.log(selectCity);
+                // 设置联动
+                $('#consigneeAddress').val(selectCity);
+
+
+                // 地图检索
+                map.clearOverlays();
+                localSearch.setSearchCompleteCallback(function (searchResult) {
+                    var poi = searchResult.getPoi(0);
+                    //获取经度和纬度，赋值
+                    sPoint = poi.point;
+                    sPointX = poi.point.lng;
+                    sPointY = poi.point.lat;
+                    map.centerAndZoom(poi.point, 11);  // 地图展示到对应的经纬度区域
+                    var marker = new BMap.Marker(new BMap.Point(poi.point.lng, poi.point.lat));  // 创建标注，为要查询的地址对应的经纬度
+                    map.addOverlay(marker);
+                });
+                localSearch.search(selectCity);  // 进行搜索
+            }, 500);
+        });
+
+        // 输入收件地址 获取其中的值和经纬度
+        $("#consigneeAddress").change(function () {
+            var self = this;
+            clearTimeout(self.wdT);
+            self.wdT = setTimeout(function () {
+                //console.log($(self).val());
+                // 获取到的值
+//                sAdd = $('#selectCity').val() + $(self).val();
+                sAdd = $(self).val();
+
+
+                // 地图检索
+                map.clearOverlays();
+                localSearch.setSearchCompleteCallback(function (searchResult) {
+                    var poi = searchResult.getPoi(0);
+                    //获取经度和纬度，赋值
+                    sPoint = poi.point;
+                    sPointX = poi.point.lng;
+                    sPointY = poi.point.lat;
+                    map.centerAndZoom(poi.point, 15);  // 地图展示到对应的经纬度区域
+                    var marker = new BMap.Marker(new BMap.Point(poi.point.lng, poi.point.lat));  // 创建标注，为要查询的地址对应的经纬度
+                    map.addOverlay(marker);
+
+
+                    // 计算距离  并且显示到界面
+                    if (faPoint && sPoint) {
+                        wdDistance = map.getDistance(faPoint, sPoint);
+                        wdDistance = wdDistance / 1000;
+                        wdDistance = wdDistance.toFixed(2);
+//                    console.log(wdDistance);
+
+                        $("#distanceNum").text(wdDistance);
+                    }
+                });
+
+                localSearch.search(sAdd);  // 进行搜索
+
+            }, 800);
+        });
+
+        // xinyuStar 信誉度星星 点击变亮效果
+        $("#xinyuStar>span").click(function () {
+            // console.log($(this).attr('star'));
+            // $(this).toggleClass("starLight");
+            var starLen = parseInt($(this).attr('star'));
+            // console.log(typeof starLen); // 查看类型 是否是字符串
+
+            // 设置发件信誉度要求
+            xinyu = starLen;
+
+            // 移除所有的类
+            $("#xinyuStar>span").each(function (index, ele) {
+                $(ele).removeClass('starLight');
+            });
+
+            // 循环遍历 添加class -> starLight
+            var ele;
+            for (var i = 0; i < starLen; i++) {
+                ele = $("#xinyuStar>span")[i];
+                $(ele).addClass("starLight");
+            }
+
+        });
+
+        // 如果发件地址为空，绑定发件地址
+        $('#goBandBtn').click(function () {
+            window.location.href = 'merchantMe.html';
+        });
+
+        // ======================================================= 点击发单 =======================================================
+        $("#sendBtn").click(function () {
+
+            // 发件地址的经纬度
+            console.log('发件地址的经度:   ' + pointX);
+            console.log('发件地址的纬度:   ' + pointY);
+
+            // 发件地址
+            faAdd = $("#sendAdd").val();
+            console.log('发件地址:  ' + faAdd);
+
+            // 发件人姓名电话
+            fName = $("#name").val();
+            fTel = $("#iphone").val();
+            console.log('发件人姓名电话:  ' + fName);
+            console.log('发件人姓名电话:  ' + fTel);
+
+            // 收件地址的经纬度
+            console.log('收件地址的经度:   ' + sPointX);
+            console.log('收件地址的纬度:   ' + sPointY);
+
+            // 收件人姓名电话
+            sName = $("#shouName").val();
+            sTel = $("#shouIphone").val();
+            console.log('收件人姓名电话:  ' + sName);
+            console.log('收件人姓名电话:  ' + sTel);
+
+            // 收件人地址
+            sAdd = $("#consigneeAddress").val();
+            saddDetail = $("#addDetail").val();
+            console.log('收件人地址:  ' + sAdd);
+            console.log('收件人详细地址:  ' + saddDetail);
+
+            // 其他
+            goodsType = $("#goodsType").val();
+            wdWeight = $("#goodsWeight").val();
+            wdPrice = $("#goodsPrice").val();
+            postscript = $("#postscript").val();
+
+            console.log('类型:  ' + goodsType);
+            console.log('重量:  ' + wdWeight);
+            console.log('信誉:  ' + xinyu);
+            console.log('价格:  ' + wdPrice);
+            console.log('备注:  ' + postscript);
+            console.log('距离:  ' + wdDistance);
+
+            // 如果等于空 弹出提示
+            if (fName == '' || fTel == '' || sPointX == 'undefined' || sPointY == 'undefined' || sName == '' || sTel == '' || sAdd == '' || saddDetail == '' || goodsType == '' || wdWeight == '' || wdPrice == '' || wdDistance == 'undefined') {
+                alert("请将信息填写完整再发单");
+            }
+            else {
+                // 向后台发送请求
+                //   => => => =>
+            }
+
+        })
+
+    });
+
+
+    /**
+     * 获取当前位置的经纬度
+     * @param ip
+     * @param ak
+     * @param callback
+     */
+    function getPoint(ip, ak, callback) {
+        // 获取经纬度
+        $.ajax({
+            type: "GET",
+            url: "http://api.map.baidu.com/location/ip",
+            async: false,
+            dataType: "jsonp",                 // 数据类型为jsonp
+            data: {
+                ip: ip,
+                ak: ak,
+                coor: "bd09ll"
+            },
+            success: function (res) {
+                if (res.status == 0) {
+//                    console.log(res);
+                    pointX = res.content.point.x;
+                    pointY = res.content.point.y;
+
+                    // 设置发件地址
+                    $("#sendAdd").val(res.content.address);
+
+                    if (callback) callback();
+                } else {
+                    alert("位置获取失败！");
+                }
+            }
+        });
+    }
+
+    /**
+     * 返回id
+     * @param id
+     * @returns {Element}
+     * @constructor
+     */
+    function G(id) {
+        return document.getElementById(id);
+    }
+
+
+    // 获取发件地址
+    /**
+     * 获取发件地址
+     */
+    function getFaAdd(callback) {
+        var url = '../data/getFaAdd.json';
+        $.ajax({
+            type: "GET",
+            url: url,
+            success: function (res) {
+
+                // 如果地址不存在  去绑定
+                if (!res.data.add) {
+                    $('#goBandBtn').show();
+                }
+
+                $('#sendAdd').val(res.data.add);
+                $('#name').val(res.data.name);
+                $('#iphone').val(res.data.tel);
+
+                if (callback) callback();
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        })
+    }
+
+</script>
+</body>
+</html>

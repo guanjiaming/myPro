@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0">
+    <title>年会签到</title>
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+<div id="wddj-yearParty">
+    <!-- 整体背景 -->
+    <div class="bgWrap">
+        <img class="bg2" src="../images/bg.jpg">
+        <img class="bg3" src="../images/cloud.png">
+    </div>
+    <!-- 主题内容 -->
+    <div class="main">
+        <!--头部内容-->
+        <div class="topWrap">
+            <!-- 顶部背景 -->
+            <img class="topBg" src="../images/titleBg.png">
+
+            <!-- 正标题 -->
+            <img class="titlePhoto" src="../images/title.png" alt="title">
+
+            <!-- 副标题 -->
+            <img class="title2" src="../images/title2.png" alt="title">
+
+            <!-- 签到按钮 -->
+            <img id="yearPartySign" src="../images/signin.png" alt="签到背景图">
+
+        </div>
+
+        <!-- 倒计时部分 -->
+        <div class="countDownWrap">
+            <!-- 倒计时背景 -->
+            <img class="countDownWrapBg" src="../images/countDownBg.png" alt="倒计时背景">
+            <!-- 时间 -->
+            <div id="countdown" class="dateLine">
+                <div class="dash days_dash">
+                    <div class="digit">0</div>
+                    <div class="digit">0</div>
+                    <span class="dash_title">天</span>
+                </div>
+
+                <div class="dash hours_dash">
+                    <div class="digit">0</div>
+                    <div class="digit">0</div>
+                    <span class="dash_title">小时</span>
+                </div>
+
+                <div class="dash minutes_dash">
+                    <div class="digit">0</div>
+                    <div class="digit">0</div>
+                    <span class="dash_title">分</span>
+                </div>
+
+                <div class="dash seconds_dash">
+                    <div class="digit">0</div>
+                    <div class="digit">0</div>
+                    <span class="dash_title">秒</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 抽奖说明 -->
+        <div class="activeExplainWrap">
+            <!-- 背景 -->
+            <img class="activeExplainBg" src="../images/prizeBg.jpg" alt="背景">
+
+            <!-- 奖品图 -->
+            <img class="prizePhoto" src="../images/prizePhoto.png" alt="奖品图">
+
+            <!-- 说明文字 -->
+            <div class="activeExplainText">
+                <p style="font-weight: 600;font-size: 14px;">抽奖时间：2017年12月20日</p>
+                <p style="font-weight: 600;font-size: 14px;">抽奖地点：石狮万佳国际酒店</p>
+                <h2 style="font-weight: 600;font-size: 15px;">活动说明:</h2>
+                <p style="font-size: 14px;">1.本活动为雨柔实业股份集团有限公司年会活动。</p>
+                <p style="font-size: 14px;"> 2.为感谢新老用户的支持，凡在抽奖前签到用户均有抽奖资格，在活动当天到达年会现</p>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+<script src="../js/lib/jquery-1.8.3.min.js"></script>
+<script src="../js/lib/jquery.lwtCountdown-1.0.js"></script>
+<script>
+
+    $(function () {
+
+        // 倒计时
+        $('#countdown').countDown({
+            targetDate: {
+                'day': 20,
+                'month': 12,
+                'year': 2017,
+                'hour': 12,
+                'min': 0,
+                'sec': 0
+            }
+        });
+
+//        $('#email_field').focus(email_focus).blur(email_blur);
+        $('#subscribe_form').bind('submit', function () {
+            return false;
+        });
+
+
+        // isSignin
+        isSignIn();
+
+
+        // 点击签到事件
+        $('#yearPartySign').click(function () {
+            $(this).attr("src", "../images/finishSignIn.png");
+
+            // 想后台发送签到请求
+            // SignIn();
+        })
+    });
+
+    /**
+     * 签到请求方法
+     * @constructor
+     */
+    function SignIn() {
+        $.ajax({
+            url: "",
+            data: {},
+            success: function (res) {
+                console.log(res);
+            },
+            error: function () {
+
+            }
+        })
+    }
+
+    /**
+     * 判断是否登录
+     */
+    function isSignIn() {
+        $.ajax({
+            url: "../data/isSignIn.json",
+            success: function (res) {
+                if(res.isSignIn){
+                    $("#yearPartySign").attr("src", "../images/finishSignIn.png");
+                }else{
+                    $("#yearPartySign").attr("src", "../images/signin.png");
+                }
+            },
+            error: function () {
+
+            }
+        })
+    }
+</script>
+</body>
+</html>

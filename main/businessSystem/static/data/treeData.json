@@ -1,0 +1,31 @@
+{
+  "tree": [
+    {
+      "text": "商家管理",
+      "state": {
+        "expanded": true
+      },
+      "nodes": [
+        {
+          "text": "发单",
+          "href": "sendOrder.html",
+          "state": {
+            "selected": true
+          }
+        },
+        {
+          "text": "订单管理",
+          "href": "ordering.html"
+        },
+        {
+          "text": "配送员管理",
+          "href": "courierContract.html"
+        },
+        {
+          "text": "个人账户",
+          "href": "merchantMe.html"
+        }
+      ]
+    }
+  ]
+}

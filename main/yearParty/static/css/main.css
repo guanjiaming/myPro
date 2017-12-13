@@ -1,0 +1,283 @@
+/**
+ * Eric Meyer's Reset CSS v2.0 (http://meyerweb.com/eric/tools/css/reset/)
+ * http://cssreset.com
+ */
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video,
+input {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font-weight: normal;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+/* custom */
+a {
+  color: #7e8c8d;
+  text-decoration: none;
+  -webkit-backface-visibility: hidden;
+}
+li {
+  list-style: none;
+}
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track-piece {
+  background-color: rgba(0, 0, 0, 0.2);
+  -webkit-border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:vertical {
+  height: 5px;
+  background-color: rgba(125, 125, 125, 0.7);
+  -webkit-border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:horizontal {
+  width: 5px;
+  background-color: rgba(125, 125, 125, 0.7);
+  -webkit-border-radius: 6px;
+}
+html,
+body {
+  width: 100%;
+}
+body {
+  -webkit-text-size-adjust: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+html,
+body {
+  width: 100%;
+}
+#wddj-yearParty {
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+}
+.bg2 {
+  width: 100%;
+}
+.bg3 {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+}
+.main {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.topWrap {
+  width: 100%;
+  position: relative;
+}
+.topBg {
+  width: 100%;
+}
+.titlePhoto {
+  width: 83%;
+  position: absolute;
+  top: 33%;
+  left: 8.5%;
+}
+.title2 {
+  width: 36.7%;
+  position: absolute;
+  top: 61%;
+  left: 31.5%;
+}
+#yearPartySign {
+  width: 43.3%;
+  position: absolute;
+  top: 72%;
+  left: 28.4%;
+}
+.countDownWrap {
+  width: 100%;
+  position: relative;
+}
+.countDownWrapBg {
+  width: 85.5%;
+  margin-left: 7.2%;
+}
+.dateLine {
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  color: #773304;
+}
+.dateLine .digit {
+  padding: 4px;
+  background: #c21315;
+  color: #f2dca2;
+  border-radius: 4px;
+  display: inline-block;
+  height: 16px;
+  overflow: hidden;
+}
+.dateLine .dash_title {
+  position: relative;
+  top: -5px;
+}
+.dash {
+  display: inline-block;
+}
+@media screen and (max-width: 320px) {
+  .dateLine {
+    font-size: 12px;
+  }
+  #countdown .digit {
+    height: 12px;
+  }
+  .bg3 {
+    bottom: -33px;
+  }
+}
+.activeExplainWrap {
+  width: 100%;
+  position: relative;
+  top: 10px;
+}
+.activeExplainBg {
+  width: 92.4%;
+  margin-left: 3.8%;
+}
+.prizePhoto {
+  width: 77.2%;
+  position: absolute;
+  top: 5%;
+  left: 11%;
+}
+.activeExplainText {
+  width: 100%;
+  position: absolute;
+  top: 40%;
+  left: 0;
+  color: #b3130a;
+  padding-left: 10.6%;
+  padding-right: 10.6%;
+  box-sizing: border-box;
+}
+.activeExplainText p {
+  margin-bottom: 10px;
+  line-height: 18px;
+}
+.activeExplainText h2 {
+  margin-top: 25px;
+  margin-bottom: 10px;
+}
